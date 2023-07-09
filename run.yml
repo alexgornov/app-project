@@ -5,3 +5,4 @@
     - docker
     - application
     - nginx
+  become: yes
