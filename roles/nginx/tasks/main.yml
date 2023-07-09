@@ -23,7 +23,7 @@
     dest: "{{ nginx_dir_path }}/docker-compose.yml"
 
 - name: Copy configs
-  ansiansible.builtin.copy:
+  ansible.builtin.copy:
     src: "conf"
     dest: "{{ nginx_dir_path }}/conf"
 
