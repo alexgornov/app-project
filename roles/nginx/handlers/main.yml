@@ -5,6 +5,7 @@
     name: "{{ item }}"
     enabled: true
     daemon_reload: true
+    state: started
   loop:
     - 'nginx_app.path'
     - 'nginx_conf.path'
