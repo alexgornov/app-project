@@ -1,0 +1,51 @@
+---
+# tasks file for docker
+- name: Delete old packages
+  ansible.builtin.apt:
+    state: absent
+    name: "{{ item }}"
+  loop:
+    - docker.io 
+    - docker-doc 
+    - docker-compose 
+    - podman-docker 
+    - containerd 
+    - runc
+
+- name: Install need packages
+  ansible.builtin.apt:
+    state: present
+    update_cache: yes
+    name: "{{ item }}"
+  loop:
+    - ca-certificates 
+    - curl 
+    - gnupg
+
+- name: Setup GPG
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add repo
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+    
+- name: Install docker
+  ansible.builtin.apt:
+    state: present
+    update_cache: yes
+    name: "{{ item }}"
+  loop:
+    - docker-ce 
+    - docker-ce-cli 
+    - containerd.io 
+    - docker-buildx-plugin
+  notify: Docker enable
+    
+- name: Install docker-compose
+  ansible.builtin.get_url:
+    url: https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-linux-x86_64
+    dest: /usr/bin/docker-compose
+    mode: '0555'

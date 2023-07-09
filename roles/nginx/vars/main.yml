@@ -1,0 +1,6 @@
+---
+# vars file for nginx
+nginx_tag: "1.25-alpine"
+nginx_dir_path: "/opt/docker/nginx"
+
+systemd_dir_path: "/etc/systemd/system"

@@ -1,0 +1,12 @@
+---
+# handlers file for nginx
+- name: Enable services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    daemon_reload: true
+  loop:
+    - 'nginx_app.path'
+    - 'nginx_conf.path'
+    - 'nginx_reload.service'
+    - 'nginx_restart.service'

@@ -1,0 +1,17 @@
+---
+# tasks file for ufw
+
+- name: Install ufw
+  ansible.builtin.apt:
+    state: present
+    update_cache: yes
+    name: "ufw"
+
+- name: UFW setup
+  shell: |
+    ufw default deny incoming
+    ufw default allow outgoing
+    ufw allow 22
+    ufw allow 80
+    ufw allow 443
+    echo "y" | ufw enable

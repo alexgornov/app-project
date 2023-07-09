@@ -1,0 +1,6 @@
+---
+# vars file for application
+app_image: "alexgornov/app1"
+app_tag: "1.0"
+
+app_dir_path: "/opt/docker/web-app"
